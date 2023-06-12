@@ -1,7 +1,14 @@
-import React from 'react'
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState } from 'react';
+import Modal from './Modal';
+
+
 
 export default function Navbar() {
+  const [openModal, setOpenModal] = useState(false);
   return (
+
     <div>
         <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
     <div className="container">
@@ -43,14 +50,44 @@ export default function Navbar() {
           <li className="nav-item">
             <a className="nav-link " href="contact.html">Contact</a>
           </li>
+          
         </ul>
       </div>
 
       <button type="button" className="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
         <i className="bi bi-search"></i>
       </button>
-
-    </div>
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink"
+          role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+          <div><img src=" https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-1.jpg " class="rounded-circle"
+            height="40" width="38" alt="Avatar"/></div>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li>
+            {/* <a class="dropdown-item" href="#">My profile</a> */}
+            <div>
+      <a  class="dropdown-item" href="#"
+      onClick={() => setOpenModal(true)} 
+      className='modalButton'>
+        My profile
+      </a>
+      <Modal 
+      open={openModal} 
+      onClose={() => setOpenModal(false)} />
+      </div>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Settings</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Logout</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>  
   </nav>
     </div>
   )
