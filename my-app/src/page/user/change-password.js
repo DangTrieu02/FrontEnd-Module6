@@ -1,10 +1,9 @@
-// change-password.js
 import React from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
-import {changePassword} from "../../services/userService";
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import {useDispatch, useSelector} from "react-redux";
+import { changePassword } from "../../services/userService";
 
 const ChangePasswordSchema = Yup.object().shape({
     currentPassword: Yup.string().required('Old Password is required'),
@@ -19,19 +18,19 @@ const ChangePasswordSchema = Yup.object().shape({
 export default function ChangePassword() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const {params} = useParams();
-const user = useSelector((state)=>{
-    console.log(state,99999)
-})
-    const handleSubmit = (values) => {
-        dispatch(changePassword(values)).then(() => {
+
+    const handleSubmit = async (values) => {
+        try {
+            await dispatch(changePassword(values));
             navigate("/home");
-        });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
-        <div>
-            <h2>Change Password</h2>
+        <div className="container py-5">
+            <h2 className="mb-4">Change Password</h2>
             <Formik
                 initialValues={{
                     currentPassword: '',
@@ -42,22 +41,22 @@ const user = useSelector((state)=>{
                 onSubmit={handleSubmit}
             >
                 <Form>
-                    <div>
-                        <label htmlFor="currentPassword">Current Password:</label>
-                        <Field type="password" id="currentPassword" name="currentPassword" />
-                        <ErrorMessage name="currentPassword" component="div" />
+                    <div className="mb-3">
+                        <label htmlFor="currentPassword" className="form-label">Current Password:</label>
+                        <Field type="password" id="currentPassword" name="currentPassword" className="form-control" />
+                        <ErrorMessage name="currentPassword" component="div" className="text-danger" />
                     </div>
-                    <div>
-                        <label htmlFor="newPassword">New Password:</label>
-                        <Field type="password" id="newPassword" name="newPassword" />
-                        <ErrorMessage name="newPassword" component="div" />
+                    <div className="mb-3">
+                        <label htmlFor="newPassword" className="form-label">New Password:</label>
+                        <Field type="password" id="newPassword" name="newPassword" className="form-control" />
+                        <ErrorMessage name="newPassword" component="div" className="text-danger" />
                     </div>
-                    <div>
-                        <label htmlFor="confirmNewPassword">Confirm New Password:</label>
-                        <Field type="password" id="confirmNewPassword" name="confirmNewPassword" />
-                        <ErrorMessage name="confirmNewPassword" component="div" />
+                    <div className="mb-3">
+                        <label htmlFor="confirmNewPassword" className="form-label">Confirm New Password:</label>
+                        <Field type="password" id="confirmNewPassword" name="confirmNewPassword" className="form-control" />
+                        <ErrorMessage name="confirmNewPassword" component="div" className="text-danger" />
                     </div>
-                    <button type="submit">Change Password</button>
+                    <button type="submit" className="btn btn-primary">Change Password</button>
                 </Form>
             </Formik>
         </div>
