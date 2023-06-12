@@ -8,17 +8,17 @@ import { ErrorMessage, Field, Formik, Form } from "formik";
 
 
 
-const validateSchema = Yup.object().shape({
-    username: Yup.string()
-        .min(2, "Too Short")
-        .max(32, "Too Long")
-        .required("required"),
-    password: Yup.string()
-        .min(2, "Too Short")
-        .max(32, "Too Long")
-        .required("required")
+    const validateSchema = Yup.object().shape({
+        username: Yup.string()
+            .min(2, "Too Short")
+            .max(32, "Too Long")
+            .required("required"),
+        password: Yup.string()
+            .min(2, "Too Short")
+            .max(32, "Too Long")
+            .required("required")
 
-})
+    })
 export default function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -62,7 +62,7 @@ export default function Login() {
                                                 <div className="form-floating">
                                                     <Field type="text" className="form-control" name={'username'} id="username" placeholder="Username"/>
                                                     <label for="username">Username</label>
-                                                    <alert classNameName="text-danger">
+                                                    <alert className="text-danger">
                                                         <ErrorMessage name={"username"}></ErrorMessage>
                                                     </alert>
                                                 </div>
@@ -71,7 +71,7 @@ export default function Login() {
                                                 <div className="form-floating">
                                                     <Field type="password" className="form-control" name={'password'} id="password" placeholder="Password"/>
                                                     <label for="password">Password</label>
-                                                    <alert classNameName="text-danger">
+                                                    <alert className="text-danger">
                                                         <ErrorMessage name={"password"}></ErrorMessage>
                                                     </alert>
                                                 </div>
