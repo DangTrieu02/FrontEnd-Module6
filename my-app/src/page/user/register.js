@@ -39,7 +39,22 @@ function Register() {
     const navigate = useNavigate()
     const handleRegister = async (values) => {
        axios.post('http://localhost:3001/users/register', values).then((response) => {
-            console.log(response.data);
+            if (response.status==209){
+                swal({
+                    title: "error",
+                    text: response.data.message,
+                    icon: "error",
+                    button: "Close",
+                  });
+            }else{
+                swal({
+                    title: "success",
+                    text: response.data.message,
+                    icon: "success",
+                    button: "Close",
+                  });
+                  navigate("/");
+            }
        })
        
     };
