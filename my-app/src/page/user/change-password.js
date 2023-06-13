@@ -1,9 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { changePassword } from "../../services/userService";
+import axios from "axios";
 
 const ChangePasswordSchema = Yup.object().shape({
     currentPassword: Yup.string().required('Old Password is required'),
@@ -16,12 +15,11 @@ const ChangePasswordSchema = Yup.object().shape({
 });
 
 export default function ChangePassword() {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleSubmit = async (values) => {
         try {
-            await dispatch(changePassword(values));
+            await axios.put(`http://localhost:3001/users/change-password/${values.idUser}`);
             navigate("/home");
         } catch (error) {
             console.log(error);

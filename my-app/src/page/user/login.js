@@ -1,5 +1,4 @@
 // login.js
-
 import {login} from "../../service/userService";
 import * as Yup from "yup";
 import {useDispatch} from "react-redux";
@@ -94,6 +93,4 @@ export default function Login() {
             </div>
         </>
     );
-
-
 }
