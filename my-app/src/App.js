@@ -5,6 +5,7 @@ import Login from "./page/user/login";
 import HomeOwner from "./page/owner/homeOwner";
 
 import Register from "./page/user/register";
+import EditProfile from "./page/editProfile";
 function App() {
     let user = localStorage.getItem("user");
 

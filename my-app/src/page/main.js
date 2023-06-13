@@ -3,7 +3,7 @@ import React from 'react'
 export default function Main() {
   return (
    <>
-    <main id="main">
+    <main id="main" style={{backgroundColor:"white"}}>
 
 
 <section className="section-services section-t8">

@@ -5,6 +5,8 @@ import {Link, useNavigate} from "react-router-dom";
 import swal from "sweetalert";
 import {useEffect} from "react";
 import { ErrorMessage, Field, Formik, Form } from "formik";
+// import "../../../public/assets/css/login.css"
+
 
 
 const validateSchema = Yup.object().shape({
@@ -17,7 +19,7 @@ const validateSchema = Yup.object().shape({
         .max(32, "mật khẩu cần dài từ 6 đến 32 kí tự")
         .required("required")
 
-    })
+})
 export default function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -37,60 +39,77 @@ export default function Login() {
             }
         });
     };
-
+    // useEffect(()=>{
+    //     localStorage.clear()
+    // },[])
     return (
         <>
-            <div className="container-xxl py-5">
-                <div className="container">
-                    <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: "600px"}}>
-                        <h1 className="mb-3">Login</h1>
-                    </div>
-                    <div className="row g-4">
-                        <div className="col-md-8 offset-2">
-                            <div className="wow fadeInUp" data-wow-delay="0.5s">
-                                <Formik
-                                    initialValues={{
-                                        username: "",
-                                        password: "",
-                                    }}
-                                    validationSchema={validateSchema}
-                                    onSubmit={(values) => {
-                                        handleLogin(values)
-                                    }}
-                                >
-                                    <Form>
-                                        <div className="row g-3">
-                                            <div className="col-12">
-                                                <div className="form-floating">
-                                                    <Field type="text" className="form-control" name={'username'} id="username" placeholder="Username"/>
-                                                    <label for="username">Username</label>
-                                                    <alert className="text-danger">
-                                                        <ErrorMessage name={"username"}></ErrorMessage>
-                                                    </alert>
-                                                </div>
+
+
+            <div className="img js-fullheight body_login" style={{
+                backgroundImage: 'url(bg.jpg)'
+            }}>
+                <section className="ftco-section">
+                    <div className="login-container">
+                        <div className="row justify-content-center">
+                            <div className="col-md-6 text-center mb-5">
+                                <h2 className="heading-section">Login</h2>
+                            </div>
+                        </div>
+                        <div className="row justify-content-center">
+                            <div className="col-md-6 col-lg-4">
+                                <div className="login-wrap p-0">
+                                    <h3 className="mb-4 text-center">Have an account?</h3>
+                                    <Formik
+                                        initialValues={{
+                                            username: "",
+                                            password: "",
+                                        }}
+                                        validationSchema={validateSchema}
+                                        onSubmit={(values) => {
+                                            handleLogin(values)
+                                        }}
+                                    >
+                                    <Form action="#" className="signin-form">
+                                        <div className="form-group">
+                                            <Field type="text" className="form-control-login " name={"username"} placeholder="Username" required/>
+                                            <alert className="text-danger">
+                                                <ErrorMessage name={"username"}></ErrorMessage>
+                                            </alert>
+                                        </div>
+                                        <div className="form-group">
+                                            <Field id="password-field" name={"password"} type="password" className="form-control-login " placeholder="Password" required/>
+                                            <alert className="text-danger">
+                                                <ErrorMessage name={"password"}></ErrorMessage>
+                                            </alert>
+                                        </div>
+                                        <div className="form-group">
+                                            <button type="submit"  className="form-control-login  btn btn-primary submit px-3">Sign In</button>
+                                        </div>
+                                        <div className="form-group d-md-flex">
+                                            <div className="w-50">
+                                                <label className="checkbox-wrap checkbox-primary">Remember Me
+                                                    <input type="checkbox" checked/>
+                                                    <span className="checkmark"></span>
+                                                </label>
                                             </div>
-                                            <div className="col-12">
-                                                <div className="form-floating">
-                                                    <Field type="password" className="form-control" name={'password'} id="password" placeholder="Password"/>
-                                                    <label for="password">Password</label>
-                                                    <alert className="text-danger">
-                                                        <ErrorMessage name={"password"}></ErrorMessage>
-                                                    </alert>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <button className="btn btn-primary w-100 py-3" type="submit">Login</button>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <Link to={"/register"}><button className="btn btn-warning w-100 py-3" type="submit">Register</button></Link>
+                                            <div className="w-50 text-md-right">
+                                                <a href="#" style={{color: '#fff'}}>Forgot Password</a>
                                             </div>
                                         </div>
                                     </Form>
-                                </Formik>
+                                    </Formik>
+
+                                    <p className="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+                                    <div className="social d-flex text-center">
+                                        <a href="#" className="px-2 py-2 mr-md-1 rounded"><span className="ion-logo-facebook mr-2"></span> Facebook</a>
+                                        <a href="/register" className="px-2 py-2 ml-md-1 rounded"><span className="ion-logo-twitter mr-2"></span>register</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
         </>
     );
