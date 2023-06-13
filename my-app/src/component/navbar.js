@@ -1,5 +1,8 @@
+// Navbar.js
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import ChangePasswordModal from "../page/user/change-password";
+
 
 export default function Navbar() {
     return (
@@ -92,9 +95,7 @@ export default function Navbar() {
                     >
                         <i className="bi bi-search"></i>
                     </button>
-                    <Link to="/change-password" className="btn btn-b-n ml-2">
-                        Change Password
-                    </Link>
+                    <ChangePasswordModal />
                 </div>
             </nav>
         </div>
