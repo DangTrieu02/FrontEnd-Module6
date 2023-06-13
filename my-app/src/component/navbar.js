@@ -1,6 +1,8 @@
-// navbar.js
+// Navbar.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import ChangePasswordModal from "../page/user/change-password";
+
 
 export default function Navbar() {
     return (
@@ -20,37 +22,34 @@ export default function Navbar() {
                         <span></span>
                         <span></span>
                     </button>
-                    <a className="navbar-brand text-brand" href="index.html">
+                    <Link to="/" className="navbar-brand text-brand">
                         Estate<span className="color-b">Agency</span>
-                    </a>
+                    </Link>
 
-                    <div
-                        className="navbar-collapse collapse justify-content-center"
-                        id="navbarDefault"
-                    >
+                    <div className="navbar-collapse collapse justify-content-center" id="navbarDefault">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link active" href="index.html">
+                                <NavLink exact to="/" className="nav-link" activeClassName="active">
                                     Home
-                                </a>
+                                </NavLink>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link " href="about.html">
+                                <NavLink to="/about" className="nav-link" activeClassName="active">
                                     About
-                                </a>
+                                </NavLink>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link " href="property-grid.html">
+                                <NavLink to="/property-grid" className="nav-link" activeClassName="active">
                                     Property
-                                </a>
+                                </NavLink>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link " href="blog-grid.html">
+                                <NavLink to="/blog-grid" className="nav-link" activeClassName="active">
                                     Blog
-                                </a>
+                                </NavLink>
                             </li>
 
                             <li className="nav-item dropdown">
@@ -66,41 +65,37 @@ export default function Navbar() {
                                     Pages
                                 </a>
                                 <div className="dropdown-menu">
-                                    <a className="dropdown-item " href="property-single.html">
+                                    <a className="dropdown-item" href="property-single.html">
                                         Property Single
                                     </a>
-                                    <a className="dropdown-item " href="blog-single.html">
+                                    <a className="dropdown-item" href="blog-single.html">
                                         Blog Single
                                     </a>
-                                    <a className="dropdown-item " href="agents-grid.html">
+                                    <a className="dropdown-item" href="agents-grid.html">
                                         Agents Grid
                                     </a>
-                                    <a className="dropdown-item " href="agent-single.html">
+                                    <a className="dropdown-item" href="agent-single.html">
                                         Agent Single
                                     </a>
                                 </div>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link " href="contact.html">
+                                <NavLink to="/contact" className="nav-link" activeClassName="active">
                                     Contact
-                                </a>
+                                </NavLink>
                             </li>
                         </ul>
                     </div>
-                    <div>
-                        <button
-                            type="button"
-                            className="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#navbarTogglerDemo01"
-                            style={{ borderRadius: 10 }}
-                        >
-                            <i className="bi bi-search"></i>
-                        </button>
-                        <Link to="/change-password" className="btn btn-b-n ml-2">
-                            Change Password
-                        </Link>
-                    </div>
+
+                    <button
+                        type="button"
+                        className="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarTogglerDemo01"
+                    >
+                        <i className="bi bi-search"></i>
+                    </button>
+                    <ChangePasswordModal />
                 </div>
             </nav>
         </div>
