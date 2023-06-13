@@ -29,7 +29,7 @@ const validateSchema = Yup.object().shape({
         .min(6, "Too Short")
         .max(32, "Too Long")
         .required("required"),
-    phoneNumber: Yup.string()   
+    phoneNumber: Yup.string()
         .min(9, "Too Short")
         .max(12, "Too Long")
         .required("required"),
@@ -38,25 +38,25 @@ const validateSchema = Yup.object().shape({
 function Register() {
     const navigate = useNavigate()
     const handleRegister = async (values) => {
-       axios.post('http://localhost:3001/users/register', values).then((response) => {
+        axios.post('http://localhost:3001/users/register', values).then((response) => {
             if (response.status==209){
                 swal({
                     title: "error",
                     text: response.data.message,
                     icon: "error",
                     button: "Close",
-                  });
+                });
             }else{
                 swal({
                     title: "success",
                     text: response.data.message,
                     icon: "success",
                     button: "Close",
-                  });
-                  navigate("/");
+                });
+                navigate("/");
             }
-       })
-       
+        })
+
     };
 
     return (
