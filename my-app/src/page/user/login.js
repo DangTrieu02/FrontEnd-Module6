@@ -17,7 +17,7 @@ const validateSchema = Yup.object().shape({
         .max(32, "mật khẩu cần dài từ 6 đến 32 kí tự")
         .required("required")
 
-})
+    })
 export default function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -40,7 +40,6 @@ export default function Login() {
 
     return (
         <>
-            <></>
             <div className="container-xxl py-5">
                 <div className="container">
                     <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: "600px"}}>
@@ -65,7 +64,7 @@ export default function Login() {
                                                 <div className="form-floating">
                                                     <Field type="text" className="form-control" name={'username'} id="username" placeholder="Username"/>
                                                     <label for="username">Username</label>
-                                                    <alert classNameName="text-danger">
+                                                    <alert className="text-danger">
                                                         <ErrorMessage name={"username"}></ErrorMessage>
                                                     </alert>
                                                 </div>
@@ -74,7 +73,7 @@ export default function Login() {
                                                 <div className="form-floating">
                                                     <Field type="password" className="form-control" name={'password'} id="password" placeholder="Password"/>
                                                     <label for="password">Password</label>
-                                                    <alert classNameName="text-danger">
+                                                    <alert className="text-danger">
                                                         <ErrorMessage name={"password"}></ErrorMessage>
                                                     </alert>
                                                 </div>

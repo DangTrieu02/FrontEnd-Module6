@@ -10,9 +10,7 @@ const userSlice = createSlice({
     initialState,
     reducers:{},
     extraReducers:builder => {
-        console.log(2)
         builder.addCase(login.fulfilled,(state,action)=>{
-            console.log(1)
             state.currentState= action.payload
             localStorage.setItem("user",JSON.stringify(action.payload))
             localStorage.setItem("access-token",action.payload.token)
