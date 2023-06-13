@@ -1,15 +1,9 @@
-/* eslint-disable react/jsx-no-undef */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react';
-import Modal from './Modal';
+import React from 'react';
 
 
 
 export default function Navbar() {
-  const [openModal, setOpenModal] = useState(false);
   return (
-
-    <div>
         <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
     <div className="container">
       <button className="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +33,7 @@ export default function Navbar() {
           </li>
 
           <li className="nav-item dropdown">
-            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+            {/* <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a> */}
             <div className="dropdown-menu">
               <a className="dropdown-item " href="property-single.html">Property Single</a>
               <a className="dropdown-item " href="blog-single.html">Blog Single</a>
@@ -53,42 +47,28 @@ export default function Navbar() {
           
         </ul>
       </div>
-
       <button type="button" className="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
         <i className="bi bi-search"></i>
       </button>
-    <ul class="navbar-nav">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink"
-          role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-          <div><img src=" https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-1.jpg " class="rounded-circle"
-            height="40" width="38" alt="Avatar"/></div>
-        </a>
+        <p class="nav-link dropdown-toggle d-flex align-items-center"  id="navbarDropdownMenuLink"
+          role="button" aria-expanded="false">
+          <img src=" https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-1.jpg " class="rounded-circle"
+            height="40" width="38" alt="Avatar"/>
+        </p>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <li>
-            {/* <a class="dropdown-item" href="#">My profile</a> */}
-            <div>
-      <a  class="dropdown-item" href="#"
-      onClick={() => setOpenModal(true)} 
-      className='modalButton'>
-        My profile
-      </a>
-      <Modal 
-      open={openModal} 
-      onClose={() => setOpenModal(false)} />
-      </div>
+            <button class="dropdown-item">My profile</button> 
           </li>
           <li>
-            <a class="dropdown-item" href="#">Settings</a>
+            <button class="dropdown-item">Settings</button>
           </li>
           <li>
-            <a class="dropdown-item" href="#">Logout</a>
+            <button class="dropdown-item">Logout</button>
           </li>
         </ul>
       </li>
-    </ul>
   </div>  
   </nav>
-    </div>
   )
 }

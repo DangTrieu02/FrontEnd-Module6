@@ -1,10 +1,7 @@
 import React from 'react';
-import { login } from "../../service/userService";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import { useEffect } from "react";
 import { ErrorMessage, Field, Formik, Form } from "formik";
 import axios from 'axios';
 
@@ -39,7 +36,7 @@ function Register() {
     const navigate = useNavigate()
     const handleRegister = async (values) => {
        axios.post('http://localhost:3001/users/register', values).then((response) => {
-            if (response.status==209){
+            if (response.status===209){
                 swal({
                     title: "error",
                     text: response.data.message,
