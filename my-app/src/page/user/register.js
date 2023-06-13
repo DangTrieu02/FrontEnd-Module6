@@ -21,7 +21,7 @@ const validateSchema = Yup.object().shape({
         .matches(/^[a-zA-Z0-9]+$/, 'Mật khẩu không được chứa ký tự đặc biệt và dấu cách.')
         .required("required"),
     confirmPassword: Yup.string()
-        .min(6, "Too Short")
+        .min(4, "Too Short")
         .max(32, "Too Long")
         .oneOf([Yup.ref('password')], 'Mật khẩu không khớp.')
         .required("required"),
@@ -29,7 +29,7 @@ const validateSchema = Yup.object().shape({
         .min(6, "Too Short")
         .max(32, "Too Long")
         .required("required"),
-    phoneNumber: Yup.string()
+    phoneNumber: Yup.string()   
         .min(9, "Too Short")
         .max(12, "Too Long")
         .required("required"),
@@ -139,10 +139,10 @@ function Register() {
                                             </div>
 
                                             <div className="col-md-6">
-                                                <button className="btn btn-primary w-100 py-3" type="submit">Login</button>
+                                                <button className="btn btn-primary w-100 py-3" type="submit">Register</button>
                                             </div>
                                             <div className="col-md-6">
-                                                <Link to={"/register"}><button className="btn btn-warning w-100 py-3" type="submit">Register</button></Link>
+                                                <Link to={"/"}><button className="btn btn-warning w-100 py-3" type="submit">login</button></Link>
                                             </div>
                                         </div>
                                     </Form>
