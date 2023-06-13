@@ -26,7 +26,7 @@ const validateSchema = Yup.object().shape({
         .oneOf([Yup.ref('password')], 'Mật khẩu không khớp.')
         .required("required"),
     fullName: Yup.string()
-        .min(6, "Too Short")
+        .min(4, "Too Short")
         .max(32, "Too Long")
         .required("required"),
     phoneNumber: Yup.string()   
