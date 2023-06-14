@@ -3,20 +3,20 @@ import * as Yup from "yup";
 import {useDispatch} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import swal from "sweetalert";
+// eslint-disable-next-line no-unused-vars
 import {useEffect} from "react";
 import { ErrorMessage, Field, Formik, Form } from "formik";
 
 
-
-    const validateSchema = Yup.object().shape({
-        username: Yup.string()
-            .min(2, "Too Short")
-            .max(32, "Too Long")
-            .required("required"),
-        password: Yup.string()
-            .min(2, "Too Short")
-            .max(32, "Too Long")
-            .required("required")
+const validateSchema = Yup.object().shape({
+    username: Yup.string()
+        .min(6, "tài khoản cần dài từ 6 đến 32 kí tự")
+        .max(32, "tài khoản cần dài từ 6 đến 32 kí tự")
+        .required("required"),
+    password: Yup.string()
+        .min(6, "mật khẩu cần dài từ 6 đến 32 kí tự")
+        .max(32, "mật khẩu cần dài từ 6 đến 32 kí tự")
+        .required("required")
 
     })
 export default function Login() {
@@ -25,7 +25,12 @@ export default function Login() {
     const handleLogin = async (values) => {
         await dispatch(login(values)).then((e) => {
             if (e.payload !== "User not found" && e.payload !== "Wrong password") {
-                navigate("/home");
+                const { role } = e.payload;
+                if (role === "owner") {
+                    navigate("/owner");
+                } else {
+                    navigate("/home");
+                }
             } else if (e.payload === "User not found") {
                 swal("User not found");
             } else if (e.payload === "Wrong password") {
@@ -33,9 +38,7 @@ export default function Login() {
             }
         });
     };
-    useEffect(()=>{
-        localStorage.clear()
-    },[])
+
     return (
         <>
             <div className="container-xxl py-5">
