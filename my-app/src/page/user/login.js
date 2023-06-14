@@ -1,9 +1,8 @@
 import {login} from "../../service/userService";
 import * as Yup from "yup";
 import {useDispatch} from "react-redux";
-import {Link, useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import swal from "sweetalert";
-import {useEffect} from "react";
 import { ErrorMessage, Field, Formik, Form } from "formik";
 // import "../../../public/assets/css/login.css"
 
@@ -11,35 +10,46 @@ import { ErrorMessage, Field, Formik, Form } from "formik";
 
 const validateSchema = Yup.object().shape({
     username: Yup.string()
-        .min(6, "tài khoản cần dài từ 6 đến 32 kí tự")
-        .max(32, "tài khoản cần dài từ 6 đến 32 kí tự")
+        .min(6, "Account needs to be between 6 and 32 characters long")
+        .max(32, "Account needs to be between 6 and 32 characters long")
         .required("required"),
     password: Yup.string()
-        .min(6, "mật khẩu cần dài từ 6 đến 32 kí tự")
-        .max(32, "mật khẩu cần dài từ 6 đến 32 kí tự")
+        .min(6, "Password needs to be between 6 and 32 characters long")
+        .max(32, "Password needs to be between 6 and 32 characters long")
         .required("required")
 
 })
 export default function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    let user = localStorage.getItem("user")
+    console.log(user)
+    if(user){
+
+    }
     const handleLogin = async (values) => {
         await dispatch(login(values)).then((e) => {
-            if (e.payload !== "User not found" && e.payload !== "Wrong password") {
+            if (e.payload && e.payload.role) {
                 const { role } = e.payload;
                 if (role === "owner") {
                     navigate("/owner");
                 } else {
                     navigate("/home");
                 }
-            } else if (e.payload === "User not found") {
-                swal("User not found");
-            } else if (e.payload === "Wrong password") {
-                swal("Wrong password");
+            } else if (e.payload === "user not found") {
+                swal({
+                    title: "User not found!",
+                    icon: "error",
+                    buttons:"close",
+                });
+            } else if (e.payload === "wrong password") {
+                swal({
+                    title: "Wrong password!",
+                    icon: "error",
+                });
             }
         });
-    };
-    // useEffect(()=>{
+    };    // useEffect(()=>{
     //     localStorage.clear()
     // },[])
     return (
